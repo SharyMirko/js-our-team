@@ -51,3 +51,47 @@ for (let i = 0; i < arrTeamMember.length; i++){
           </div>
     `
 }
+
+
+// parte bonus
+// seleziono gli oggetti del form
+const newMemberName = document.querySelector('#name')
+const newMemberRole = document.querySelector('#role')
+const newMemberPic = document.querySelector('#image')
+const btnAdd = document.querySelector('#addMemberButton')
+
+// creo la funzione
+btnAdd.addEventListener('click', function(){
+    let newNameValue = newMemberName.value
+    let newRoleValue = newMemberRole.value
+    let newPicValue = newMemberPic.value
+    let newObjUser = {
+        name: newNameValue,
+        role: newRoleValue,
+        picture: newPicValue
+    }
+    arrTeamMember.push(newObjUser)
+    cardGenerator();
+})
+
+
+function cardGenerator() {
+    teamCardContainer.innerHTML = ''
+    for (let i = 0; i < arrTeamMember.length; i++){
+        teamCardContainer.innerHTML += `
+        <div class="team-card">
+                <div class="card-image">
+                  <img
+                    src="img/${arrTeamMember[i].picture}"
+                    alt="${arrTeamMember[i].name}"
+                  />
+                </div>
+                <div class="card-text">
+                  <h3>${arrTeamMember[i].name}</h3>
+                  <p>${arrTeamMember[i].role}</p>
+                </div>
+              </div>
+        `
+    }
+}
+
